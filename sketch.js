@@ -24,9 +24,7 @@ function preload(){
   layer7Img = loadImage("Layer7.png")
   layer8Img = loadImage("Layer8.png")
   layer9Img = loadImage("layer9.png")
-  bg1Img = loadImage("Bg1.jpg")
-  sceretbookImg = loadImage("book.png")
-  lightImg = loadImage("light.png")
+  
   playbImg = loadImage("playb.png")
   plrImg = loadAnimation("0.png","1.png", "2.png", "3.png","4.png", "5.png", "6.png", "7.png")
   
