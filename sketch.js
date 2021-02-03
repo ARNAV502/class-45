@@ -13,7 +13,7 @@ var enemy,enemyImage,enemy2,enemy2Image;
 var enemyGroup,enemy2Group;
 var ground;
 var gameState = "play"
-
+var ZombieIMG, ZombieCreatIMG, Zombie;
 function preload(){
   layer1Img = loadImage("Layer1.png")
   layer2Img = loadImage("Layer2.png")
@@ -24,17 +24,18 @@ function preload(){
   layer7Img = loadImage("Layer7.png")
   layer8Img = loadImage("Layer8.png")
   layer9Img = loadImage("layer9.png")
-  
+  // ZombieIMG = loadImage("Alien_1_Walking.gif")
+  // ZombieCreatIMG = createImage("Alien_1_Walking.gif")
   plrImg = loadAnimation("0.png","1.png", "2.png", "3.png","4.png", "5.png", "6.png", "7.png")
   
   BGSound = loadSound("rainforest-sounds.mp3")
   
   enemyImage = loadImage("EnemyBird.png");
-  enemy2Image = loadImage("EnemyP1Idle.png");
+  enemy2Image = loadAnimation("Alien_1_Walking0001.png", "Alien_1_Walking0002.png", "Alien_1_Walking0003.png","Alien_1_Walking0004.png", "Alien_1_Walking0005.png", "Alien_1_Walking0006.png", "Alien_1_Walking0007.png", "Alien_1_Walking0008.png", "Alien_1_Walking0009.png", "Alien_1_Walking0010.png", "Alien_1_Walking0011.png", "Alien_1_Walking0012.png", );
 }
 
 function setup(){
- canvas =  createCanvas(1200,470)
+
  // BGSound.play()
   camera.on()
   layer1 = createSprite(250,1)
@@ -96,7 +97,7 @@ function draw(){
 
   if (keyDown("right")) {
     plr.x = plr.x+5;
-    plr.mirrorX(-1);    
+
   }
 
 
@@ -107,7 +108,7 @@ score = score + Math.round(getFrameRate()/60);
   textSize(20);
    text("Score: "+ score, 400,50);
   
-  spawnEnemy()
+ // spawnEnemy()
   spawnEnemy2()
     
   }
@@ -201,7 +202,7 @@ function spawnEnemy() {
   if (frameCount % 180 === 0) {
     var enemy = createSprite(random(100,700),120,40,10);
     enemy.y = Math.round(random(80,120));
-    enemy.addImage(enemyImage);
+  //  enemy.addImage(ZombieCreatIMG);
     enemy.scale = 2;
     enemy.velocityX = -3;
     
@@ -216,9 +217,9 @@ function spawnEnemy() {
 function spawnEnemy2(){
    if (frameCount % 180 === 0) {
     var enemy2 = createSprite(600,300,40,20);
-    enemy2.addImage(enemy2Image);
-    enemy2.scale = 3;
-    enemy2.velocityX = -3;
+    enemy2.addAnimation("enemy",enemy2Image);
+    enemy2.scale = 0.6;
+    //enemy2.velocityX = -3;
  
     enemy2.lifetime = 200;
 
