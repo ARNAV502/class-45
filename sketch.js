@@ -34,20 +34,22 @@ function preload(){
 }
 
 function setup(){
-  createCanvas(1200,400)
+ canvas =  createCanvas(1200,470)
+ // BGSound.play()
+  camera.on()
   layer1 = createSprite(250,1)
   layer1.addImage(layer1Img)
-  layer1.velocityX = -0.6
+  //layer1.velocityX = -0.6
   layer2 = createSprite(250,1)
   layer2.addImage(layer2Img)
-  layer2.velocityX = -1
+ // layer2.velocityX = -1
   console.log(score)
   layer3 = createSprite(250,1)
   layer3.addImage(layer3Img)
-  layer3.velocityX = -2
+ // layer3.velocityX = -2
   layer4 = createSprite(250,1)
   layer4.addImage(layer4Img)
-  layer4.velocityX = -3
+  //layer4.velocityX = -3
   
   // layer5 = createSprite(250,1)
   // layer5.addImage(layer5Img)
@@ -55,19 +57,19 @@ function setup(){
   
   layer6 = createSprite(0,0)
   layer6.addImage(layer6Img)
-  layer6.velocityX = -3.5
+  //layer6.velocityX = -3.5
   
   layer7 = createSprite(250,0)
   layer7.addImage(layer7Img)
-  layer7.velocityX = -3.5
+  //layer7.velocityX = -3.5
   
   layer8 = createSprite(250,0)
   layer8.addImage(layer8Img)
-  layer8.velocityX = -3.5
+  //layer8.velocityX = -3.5
   
   layer9 = createSprite(250,0)
   layer9.addImage(layer9Img)
-  layer9.velocityX = -3.5
+  //layer9.velocityX = -3.5
   
   
   plr = createSprite(275,300)
@@ -83,8 +85,21 @@ function setup(){
 }
 
 function draw(){
-  background(255)
-  BGSound.play()
+  background(0)
+   camera.x=plr.x;
+  camera.y=plr.y-150; 
+  
+  if (keyDown("left")) {
+    plr.x = plr.x-5;
+    plr.mirrorX(-1);    
+  }
+
+  if (keyDown("right")) {
+    plr.x = plr.x+5;
+    plr.mirrorX(-1);    
+  }
+
+
   if(gameState == "play"){
    
 score = score + Math.round(getFrameRate()/60);
@@ -100,40 +115,40 @@ score = score + Math.round(getFrameRate()/60);
   drawSprites()
 
  
- if(layer1.x<50){
-   layer1.x = 200
- }
+//  if(layer1.x<50){
+//    layer1.x = 200
+//  }
   
    
- if(layer2.x<30){
-   layer2.x = 200
- }
+//  if(layer2.x<30){
+//    layer2.x = 200
+//  }
   
    
- if(layer3.x<30){
-   layer4.x = 200
- }
+//  if(layer3.x<30){
+//    layer4.x = 200
+//  }
    
 
-   if(layer6.x<30){
-   layer6.x = 200
- }
-   if(layer7.x<30){
-   layer7.x = 200
- }
-   if(layer8.x<30){
-   layer8.x = 200
- }
+//    if(layer6.x<30){
+//    layer6.x = 200
+//  }
+//    if(layer7.x<30){
+//    layer7.x = 200
+//  }
+//    if(layer8.x<30){
+//    layer8.x = 200
+//  }
   
-     if(layer9.x<30){
-   layer9.x = 200
- }
-     if(keyDown("space")){
-      plr.velocityY = -12 
+//      if(layer9.x<30){
+//    layer9.x = 200
+//  }
+     if(keyDown("space")&& plr.y >= 306 ){
+      plr.velocityY = -12
      }
 
 plr.velocityY += 0.7 
-
+console.log(plr.y)
 plr.collide(ground)
 if(plr.isTouching(enemy2Group)){
 plr.destroy()
@@ -142,7 +157,42 @@ layer2.velocityX = 0
 layer3.velocityX = 0 
 layer4.velocityX = 0 
 }
+
+
+if(plr.x-ground.x>200) ground.x=plr.x+200;
+  if(ground.x-plr.x>200) ground.x=plr.x-200;
+
+
+if(plr.x-layer1.x>200) layer1.x=plr.x+200;
+  if(layer1.x-plr.x>200) layer1.x=plr.x-200;
+  
+
+  
+if(plr.x-layer2.x>200) layer2.x=plr.x+200;
+if(layer2.x-plr.x>200) layer2.x=plr.x-200;
+  
+
+if(plr.x-layer3.x>200) layer3.x=plr.x+200;
+if(layer3.x-plr.x>200) layer3.x=plr.x-200;
+
+if(plr.x-layer4.x>200) layer4.x=plr.x+200;
+if(layer4.x-plr.x>200) layer4.x=plr.x-200;
+
+
+
+if(plr.x-layer6.x>200) layer6.x=plr.x+200;
+if(layer6.x-plr.x>200) layer6.x=plr.x-200;
+
+if(plr.x-layer7.x>200) layer7.x=plr.x+200;
+if(layer7.x-plr.x>200) layer7.x=plr.x-200;
+
+if(plr.x-layer8.x>200) layer8.x=plr.x+200;
+if(layer8.x-plr.x>200) layer8.x=plr.x-200;
+
+if(plr.x-layer9.x>200) layer9.x=plr.x+200;
+if(layer9.x-plr.x>200) layer9.x=plr.x-200;
 }
+
 
 
 
