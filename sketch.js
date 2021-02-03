@@ -25,10 +25,9 @@ function preload(){
   layer8Img = loadImage("Layer8.png")
   layer9Img = loadImage("layer9.png")
   
-  playbImg = loadImage("playb.png")
   plrImg = loadAnimation("0.png","1.png", "2.png", "3.png","4.png", "5.png", "6.png", "7.png")
   
-  
+  BGSound = loadSound("rainforest-sounds.mp3")
   
   enemyImage = loadImage("EnemyBird.png");
   enemy2Image = loadImage("EnemyP1Idle.png");
@@ -85,7 +84,7 @@ function setup(){
 
 function draw(){
   background(255)
-  
+  BGSound.play()
   if(gameState == "play"){
    
 score = score + Math.round(getFrameRate()/60);
@@ -136,12 +135,21 @@ score = score + Math.round(getFrameRate()/60);
 plr.velocityY += 0.7 
 
 plr.collide(ground)
-    }
+if(plr.isTouching(enemy2Group)){
+plr.destroy()
+layer1.velocityX = 0 
+layer2.velocityX = 0 
+layer3.velocityX = 0 
+layer4.velocityX = 0 
+}
+}
+
+
 
 function spawnEnemy() {
   //write code here to spawn the clouds
   if (frameCount % 180 === 0) {
-    var enemy = createSprite(600,120,40,10);
+    var enemy = createSprite(random(100,700),120,40,10);
     enemy.y = Math.round(random(80,120));
     enemy.addImage(enemyImage);
     enemy.scale = 2;
@@ -157,9 +165,9 @@ function spawnEnemy() {
 
 function spawnEnemy2(){
    if (frameCount % 180 === 0) {
-    var enemy2 = createSprite(600,300,40,10);
+    var enemy2 = createSprite(600,300,40,20);
     enemy2.addImage(enemy2Image);
-    enemy2.scale = 2;
+    enemy2.scale = 3;
     enemy2.velocityX = -3;
  
     enemy2.lifetime = 200;
@@ -168,4 +176,10 @@ function spawnEnemy2(){
   }
   
   
+}
+
+
+function shootArrow(){
+
+
 }
