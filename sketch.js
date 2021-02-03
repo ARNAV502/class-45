@@ -35,7 +35,7 @@ function preload(){
 }
 
 function setup(){
-  createCanvas(1200,470)
+
  // BGSound.play()
   camera.on()
   layer1 = createSprite(250,1)
@@ -97,7 +97,7 @@ function draw(){
 
   if (keyDown("right")) {
     plr.x = plr.x+5;
-    plr.mirrorX(1);    
+
   }
 
 
